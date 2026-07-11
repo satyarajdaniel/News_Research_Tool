@@ -1,67 +1,72 @@
-# RockyBot: News Research Tool 
+# RockyBot: News Research Tool
 
-RockyBot is a user-friendly news research tool designed for effortless information retrieval. Users can input article URLs and ask questions to receive relevant insights from the stock market and financial domain.
-
-![](rockybot.jpg)
+RockyBot is a Streamlit-based news research assistant for extracting insights from online articles. Enter article URLs, process the content into embeddings, and ask questions to receive answers with source references.
 
 ## Features
 
-- Load URLs or upload text files containing URLs to fetch article content.
-- Process article content through LangChain's UnstructuredURL Loader
-- Construct an embedding vector using OpenAI's embeddings and leverage FAISS, a powerful similarity search library, to enable swift and effective retrieval of relevant information
-- Interact with the LLM's (Chatgpt) by inputting queries and receiving answers along with source URLs.
-
+- Load and process article URLs using `UnstructuredURLLoader`.
+- Split text and build embeddings with OpenAI embeddings.
+- Index content using FAISS for fast similarity search.
+- Ask natural language questions and receive answers with source context.
 
 ## Installation
 
-1.Clone this repository to your local machine using:
+1. Clone this repository:
 
 ```bash
-  git https://github.com/satyarajdaniel/News_Research_Tool.git
+git clone https://github.com/satyarajdaniel/News_Research_Tool.git
 ```
-2.Navigate to the project directory:
+
+2. Change into the project folder:
 
 ```bash
-  cd News_ResearchProject
+cd News_ResearchProject
 ```
-3. Install the required dependencies using pip:
+
+3. Install dependencies:
 
 ```bash
-  pip install -r requirements.txt
+pip install -r requirements.txt
 ```
-4.Set up your OpenAI API key by creating a .env file in the project root and adding your API
+
+4. Create a `.env` file in the project root and add your OpenAI API key:
 
 ```bash
-  OPENAI_API_KEY=your_api_key_here
+OPENAI_API_KEY=your_api_key_here
 ```
-## Usage/Examples
 
-1. Run the Streamlit app by executing:
+## Usage
+
+1. Start the app:
+
 ```bash
 streamlit run main.py
-
 ```
 
-2.The web app will open in your browser.
+2. In the browser:
 
-- On the sidebar, you can input URLs directly.
+- Enter up to three news URLs in the sidebar.
+- Click **Process URLs** to fetch, split, embed, and index the content.
+- Ask a question in the query box.
+- View the answer and source references returned by the model.
 
-- Initiate the data loading and processing by clicking "Process URLs."
+## Notes
 
-- Observe the system as it performs text splitting, generates embedding vectors, and efficiently indexes them using FAISS.
+- The FAISS index is saved under `my_vector_index/`.
+- If the index exists, the app will reuse it for queries.
+- The app currently uses the OpenAI `ChatOpenAI` model and `OpenAIEmbeddings`.
 
-- The embeddings will be stored and indexed using FAISS, enhancing retrieval speed.
+## Project Files
 
-- The FAISS index will be saved in a local file path in pickle format for future use.
-- One can now ask a question and get the answer based on those news articles
-- In video tutorial, we used following news articles
-  - https://www.moneycontrol.com/news/business/tata-motors-mahindra-gain-certificates-for-production-linked-payouts-11281691.html
-  - https://www.moneycontrol.com/news/business/tata-motors-launches-punch-icng-price-starts-at-rs-7-1-lakh-11098751.html
-  - https://www.moneycontrol.com/news/business/stocks/buy-tata-motors-target-of-rs-743-kr-choksey-11080811.html
+- `main.py` — Streamlit application.
+- `requirements.txt` — Python dependencies.
+- `my_vector_index/` — Local FAISS index storage.
+- `.env` — Local environment variables for secrets.
 
-## Project Structure
+## Example URLs
 
-- main.py: The main Streamlit application script.
-- requirements.txt: A list of required Python packages for the project.
-- faiss_store_openai.pkl: A pickle file to store the FAISS index.
-- .env: Configuration file for storing your OpenAI API key.
+You can test with news URLs like:
+
+- `https://www.moneycontrol.com/news/business/markets/tata-asset-management-announces-leadership-transition-anand-vardarajan-appointed-ceo-md-13971087.html`
+- `https://www.moneycontrol.com/news/business/markets/sk-hynix-indicated-to-climb-21-after-26-5-billion-adr-offering-13971198.html`
+- `https://www.moneycontrol.com/news/business/markets/quant-mf-buys-ethos-shares-worth-rs-175-crore-bofa-acquires-rs-385-crore-shares-in-kalyan-jewellers-13971218.html`
