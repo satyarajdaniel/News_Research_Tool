@@ -56,6 +56,12 @@ streamlit run main.py
 - If the index exists, the app will reuse it for queries.
 - The app currently uses the OpenAI `ChatOpenAI` model and `OpenAIEmbeddings`.
 
+## Screenshots
+
+![Querying with correct sources](Querying_WithCorrectSources.png)
+
+![Querying with incorrect sources](Querying_WithIncorrectSources.png)
+
 ## Project Files
 
 - `main.py` — Streamlit application.
